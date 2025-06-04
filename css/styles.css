@@ -7,12 +7,15 @@
    - Charcoal: #22223b
 */
 
+/* Add subtle background pattern */
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(135deg, #43d8c9 0%, #0077b6 100%);
     color: #22223b;
     margin: 0;
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
 }
 
 header {
@@ -21,12 +24,27 @@ header {
     padding: 2rem 1rem 1rem 1rem;
     text-align: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    margin-bottom: 0;
 }
 
 h1 {
     margin: 0 0 0.5rem 0;
     font-size: 2.5rem;
     color: #0077b6;
+    letter-spacing: 2px;
+    text-shadow: 1px 2px 8px #43d8c933;
+}
+
+header::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #43d8c9, #ffe066, #ff6f3c);
+    margin: 1rem auto 0 auto;
+    border-radius: 2px;
 }
 
 main {
@@ -34,6 +52,11 @@ main {
     flex-direction: column;
     gap: 2rem;
     padding: 2rem 1rem;
+    max-width: 900px;
+    margin: 2rem auto 0 auto;
+    box-shadow: 0 8px 32px 0 rgba(0, 119, 182, 0.10);
+    border-radius: 1.5rem;
+    background: rgba(255,255,255,0.10);
 }
 
 section {
@@ -41,15 +64,251 @@ section {
     border-radius: 1rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(2px);
 }
 
-@media (min-width: 700px) {
-    main {
-        flex-direction: row;
-        justify-content: space-between;
+.weather-forecast-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.weather-day {
+    background: #e0fbfc;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,119,182,0.08);
+    padding: 1.2rem 1.5rem;
+    min-width: 180px;
+    max-width: 220px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid #43d8c9;
+}
+.weather-day:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 6px 18px rgba(0,119,182,0.18);
+    border-color: #0077b6;
+}
+.weather-date {
+    font-weight: bold;
+    color: #0077b6;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+.weather-forecast {
+    color: #22223b;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.weather-temp {
+    color: #ff6f3c;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#weather h2 {
+    color: #0077b6;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Events Section Styling */
+#events {
+    background: #e0fbfcdd;
+    border: 2px solid #43d8c9;
+    border-radius: 1.2rem;
+    box-shadow: 0 2px 12px rgba(0,119,182,0.08);
+    margin-bottom: 2rem;
+}
+#events h2 {
+    color: #0077b6;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+}
+.event {
+    background: #fff;
+    border-left: 6px solid #43d8c9;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0,119,182,0.07);
+    padding: 1.2rem 1.5rem;
+    min-width: 220px;
+    max-width: 350px;
+    width: 100%;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+.event:hover {
+    box-shadow: 0 6px 18px rgba(0,119,182,0.18);
+    border-color: #0077b6;
+}
+.event-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0077b6;
+    margin-bottom: 0.3rem;
+}
+.event-date {
+    color: #ff6f3c;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+}
+.event-location {
+    color: #43d8c9;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+.event-desc {
+    color: #22223b;
+    font-size: 0.98rem;
+}
+
+/* Footer Styling */
+footer {
+    background: #ffe066;
+    color: #22223b;
+    text-align: center;
+    padding: 2rem 1rem 1.5rem 1rem;
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    margin-top: 2rem;
+}
+footer h2 {
+    color: #0077b6;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.social-icon {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    background: #43d8c9;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,119,182,0.08);
+}
+.social-icon:hover {
+    background: #0077b6;
+    color: #ffe066;
+    box-shadow: 0 4px 16px rgba(0,119,182,0.18);
+}
+.social-icon.instagram { background:  #c22; }
+.social-icon.facebook { background: #1877f2; }
+.social-icon.tiktok { background: #010101; }
+.social-icon.email { background: #ff6f3c; }
+
+/* Navigation Bar Styling */
+.navbar {
+    background: #0077b6;
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+}
+.navbar li {
+    display: inline-block;
+}
+.navbar a {
+    color: #ffe066;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    transition: background 0.2s, color 0.2s;
+}
+.navbar a:hover, .navbar a:focus {
+    background: #43d8c9;
+    color: #22223b;
+}
+.navbar a.active, .navbar a:focus {
+    background: #ffe066;
+    color: #0077b6;
+    outline: 2px solid #43d8c9;
+}
+
+/* Map Styling */
+#map {
+    border-radius: 1rem;
+    overflow: hidden;
+    margin: 2rem 0;
+}
+#map iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px 0 rgba(0,119,182,0.10);
+}
+
+/* Why It Matters Banner */
+.why-it-matters {
+    color: #0077b6;
+    font-size: 1.08rem;
+    font-weight: 500;
+    padding: 1.1rem 1.5rem 1.1rem 1.5rem;
+    border-bottom: 1px solid #ffe066;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    text-align: center;
+    letter-spacing: 0.2px;
+    margin-bottom: 0.5rem;
+}
+
+@media (width: 700px) {
+    .why-it-matters {
+        border-radius: 0;
+        font-size: 1rem;
+        padding: 0.8rem 0.5rem;
     }
-    section {
-        flex: 1;
-        margin: 0 1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+    main {
+        max-width: 98vw;
+        padding: 1rem 0.5rem;
+    }
+}
+@media (max-width: 700px) {
+    main {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+    }
+    header {
+        border-radius: 0;
     }
 }
