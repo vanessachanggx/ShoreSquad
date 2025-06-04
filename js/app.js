@@ -1,10 +1,8 @@
 // app.js - ShoreSquad main JS
 
-// Example: Initialize map (placeholder)
 document.addEventListener('DOMContentLoaded', () => {
-    // TODO: Integrate map API (e.g., Leaflet, Google Maps)
-    const mapSection = document.getElementById('map');
-    mapSection.innerHTML = '<p>Map will appear here.</p>';
+    // Only update weather and social sections, not the map section
+    // TODO: Integrate map API (e.g., Leaflet, Google Maps) if needed in the future
 
     // TODO: Integrate weather API
     const weatherSection = document.getElementById('weather');
